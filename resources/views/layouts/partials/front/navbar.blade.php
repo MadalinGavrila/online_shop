@@ -34,9 +34,11 @@
                         <a href="{{route('register')}}"><span class="glyphicon glyphicon-user"></span> Register</a>
                     </li>
                 @else
-                    <li>
-                        <a href="{{route('admin')}}">Admin Panel</a>
-                    </li>
+                    @role('admin')
+                        <li>
+                            <a href="{{route('admin')}}">Admin Panel</a>
+                        </li>
+                    @endrole
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> {{Auth::user()->full_name}} <b class="caret"></b></a>
                         <ul class="dropdown-menu">

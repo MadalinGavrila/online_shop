@@ -13,4 +13,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/product', 'HomeController@product')->name('home.product');
 
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::group(['middleware' => 'role:admin'], function(){
+
+    Route::get('/admin', 'AdminController@index')->name('admin');
+
+});
