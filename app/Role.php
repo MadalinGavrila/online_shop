@@ -10,6 +10,24 @@ class Role extends Model
         'name'
     ];
 
+    public function givePermission($permission_id)
+    {
+        $permission = Permission::find($permission_id);
+
+        $this->permissions()->attach($permission);
+
+        return $this;
+    }
+
+    public function withdrawPermission($permission_id)
+    {
+        $permission = Permission::find($permission_id);
+
+        $this->permissions()->detach($permission);
+
+        return $this;
+    }
+
     public function permissions()
     {
         return $this->belongsToMany(Permission::class, 'roles_permissions');

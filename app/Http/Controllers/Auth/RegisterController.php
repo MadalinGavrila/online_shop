@@ -78,9 +78,9 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-        event(new UserRequestedActivationEmail($user));
-
         $this->guard()->logout();
+
+        event(new UserRequestedActivationEmail($user));
 
         return redirect($this->redirectPath())->withSuccess('Registered. Please check your email to activate your account');
     }

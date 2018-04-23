@@ -19,6 +19,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function giveRole($role_id)
+    {
+        $role = Role::find($role_id);
+
+        $this->roles()->detach();
+
+        $this->roles()->attach($role);
+
+        return $this;
+    }
+
     public function scopeByEmail(Builder $builder, $email)
     {
         return $builder->where('email',$email);
@@ -41,6 +52,6 @@ class User extends Authenticatable
 
     public function getFullNameAttribute()
     {
-        return "{$this->last_name} {$this->first_name}";
+        return "{$this->first_name} {$this->last_name}";
     }
 }
