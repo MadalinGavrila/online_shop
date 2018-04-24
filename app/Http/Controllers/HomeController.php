@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-
-    }
-
     public function index()
     {
-        return view('front.home');
+        $categories = Category::all();
+
+        return view('front.home', compact('categories'));
     }
 
     public function product()

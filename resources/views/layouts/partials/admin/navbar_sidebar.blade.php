@@ -18,11 +18,14 @@
                 <a href="{{route('admin.users.index')}}"><i class="fa fa-users"></i> Users</a>
             </li>
         @endcan
-        <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="demo" class="collapse">
+        <li class="{{Request::is('admin/categories*') ? 'active' : ''}} {{Request::is('admin/subCategories*') ? 'active' : ''}}">
+            <a href="javascript:;" data-toggle="collapse" data-target="#categories"><i class="fa fa-tasks"></i> Categories <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="categories" class="collapse">
                 <li>
-                    <a href="">Dropdown Item</a>
+                    <a href="{{route('admin.categories.index')}}"><i class="fa fa-tasks"></i> Categories</a>
+                </li>
+                <li>
+                    <a href="{{route('admin.subCategories.index')}}"><i class="fa fa-tasks"></i> SubCategories</a>
                 </li>
             </ul>
         </li>

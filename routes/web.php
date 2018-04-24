@@ -20,6 +20,28 @@ Route::group(['middleware' => 'role:admin'], function(){
 
     Route::get('/admin', 'Admin\AdminController@index')->name('admin');
 
+    Route::resource('/admin/categories', 'Admin\AdminCategoryController', ['names'=>[
+        'index' => 'admin.categories.index',
+        'create' => 'admin.categories.create',
+        'store' => 'admin.categories.store',
+        'show' => 'admin.categories.show',
+        'edit' => 'admin.categories.edit',
+        'update' => 'admin.categories.update',
+        'destroy' => 'admin.categories.destroy'
+    ]]);
+
+    Route::post('/admin/categories/{category}/storeSubCategory', 'Admin\AdminCategoryController@storeSubCategory')->name('admin.categories.storeSubCategory');
+
+    Route::resource('/admin/subCategories', 'Admin\AdminSubCategoryController', ['names'=>[
+        'index' => 'admin.subCategories.index',
+        'create' => 'admin.subCategories.create',
+        'store' => 'admin.subCategories.store',
+        'show' => 'admin.subCategories.show',
+        'edit' => 'admin.subCategories.edit',
+        'update' => 'admin.subCategories.update',
+        'destroy' => 'admin.subCategories.destroy'
+    ]]);
+
     Route::group(['middleware' => 'permission:crud roles'], function(){
         Route::resource('/admin/roles', 'Admin\AdminRoleController', ['names'=>[
             'index' => 'admin.roles.index',

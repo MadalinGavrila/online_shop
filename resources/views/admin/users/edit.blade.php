@@ -4,6 +4,8 @@
 
 @section('content')
 
+    @include('layouts.partials.delete_modal')
+
     <h1 class="page-header">
         Users <small>Update</small>
     </h1>
@@ -44,5 +46,31 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+@endsection
+
+@section('scripts')
+
+    <script>
+
+        $(document).ready(function(){
+
+            $(".form-delete").on('click', function(e){
+
+                e.preventDefault();
+
+                var form = $(this);
+
+                $("#delete_modal").modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function(){
+
+                    form.submit();
+
+                });
+
+            });
+
+        });
+
+    </script>
 
 @endsection
