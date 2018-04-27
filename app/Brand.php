@@ -7,7 +7,7 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SubCategory extends Model
+class Brand extends Model
 {
     use Sluggable;
     use SluggableScopeHelpers;
@@ -23,12 +23,14 @@ class SubCategory extends Model
     }
 
     protected $fillable = [
-        'name', 'category_id', 'slug'
+        'name', 'slug'
     ];
 
-    public function getNameAttribute($value)
+    protected $uploads = '/images/';
+
+    public function photoPlaceholder()
     {
-        return ucwords($value);
+        return $this->uploads . "placeholder_brand.png";
     }
 
     public function products()
@@ -36,8 +38,8 @@ class SubCategory extends Model
         return $this->belongsToMany(Product::class);
     }
 
-    public function category()
+    public function photo()
     {
-        return $this->belongsTo(Category::class);
+        return $this->morphOne(Photo::class, 'imageable');
     }
 }

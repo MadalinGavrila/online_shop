@@ -29,5 +29,19 @@
                 </li>
             </ul>
         </li>
+        <li class="{{Request::is('admin/brands*') ? 'active' : ''}}">
+            <a href="{{route('admin.brands.index')}}"><i class="fa fa-copyright"></i> Brands</a>
+        </li>
+        <li class="{{Request::is('admin/products*') ? 'active' : ''}}">
+            <a href="javascript:;" data-toggle="collapse" data-target="#products"><i class="fa fa-list"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="products" class="collapse">
+                <li>
+                    <a href="{{route('admin.products.index')}}"><i class="fa fa-list-ul"></i> List Products</a>
+                </li>
+                <li>
+                    <a href="{{route('admin.products.create')}}"><i class="fa fa-plus"></i> Create Products</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>

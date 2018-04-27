@@ -42,6 +42,32 @@ Route::group(['middleware' => 'role:admin'], function(){
         'destroy' => 'admin.subCategories.destroy'
     ]]);
 
+    Route::resource('/admin/brands', 'Admin\AdminBrandController', ['names'=>[
+        'index' => 'admin.brands.index',
+        'create' => 'admin.brands.create',
+        'store' => 'admin.brands.store',
+        'show' => 'admin.brands.show',
+        'edit' => 'admin.brands.edit',
+        'update' => 'admin.brands.update',
+        'destroy' => 'admin.brands.destroy'
+    ]]);
+
+    Route::resource('/admin/products', 'Admin\AdminProductController', ['names'=>[
+        'index' => 'admin.products.index',
+        'create' => 'admin.products.create',
+        'store' => 'admin.products.store',
+        'show' => 'admin.products.show',
+        'edit' => 'admin.products.edit',
+        'update' => 'admin.products.update',
+        'destroy' => 'admin.products.destroy'
+    ]]);
+
+    Route::post('/admin/products/{product}/addSubCategory', 'Admin\AdminProductController@addSubCategory')->name('admin.products.addSubCategory');
+
+    Route::post('/admin/products/{product}/withdrawSubCategory', 'Admin\AdminProductController@withdrawSubCategory')->name('admin.products.withdrawSubCategory');
+
+    Route::post('/admin/products/ajaxSubCategory', 'Admin\AdminProductController@ajaxSubCategory')->name('admin.products.ajaxSubCategory');
+
     Route::group(['middleware' => 'permission:crud roles'], function(){
         Route::resource('/admin/roles', 'Admin\AdminRoleController', ['names'=>[
             'index' => 'admin.roles.index',

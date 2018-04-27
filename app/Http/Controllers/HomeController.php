@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::has('subCategories')->get();
 
         return view('front.home', compact('categories'));
     }
