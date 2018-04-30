@@ -9,7 +9,7 @@
     </h1>
 
     <div class="alert alert-info text-center">
-        <p>{{$product->name}}</p>
+        <p><strong>Product:</strong> {{$product->name}}</p>
     </div>
 
     <div class="col-sm-6">

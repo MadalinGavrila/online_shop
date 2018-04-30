@@ -33,6 +33,16 @@ class Brand extends Model
         return $this->uploads . "placeholder_brand.png";
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getRoute()
+    {
+        return 'admin.brands.edit';
+    }
+
     public function products()
     {
         return $this->belongsToMany(Product::class);

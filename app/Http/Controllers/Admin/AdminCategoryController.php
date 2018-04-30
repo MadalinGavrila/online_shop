@@ -108,7 +108,7 @@ class AdminCategoryController extends Controller
 
         $category->update(['name' => $request->name]);
 
-        return redirect()->route('admin.categories.index')->withSuccess("Category with id {$category->id} has been updated !");
+        return redirect()->route('admin.categories.edit', $category->id)->withSuccess('The category has been updated !');
     }
 
     /**

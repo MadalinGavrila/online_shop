@@ -9,7 +9,7 @@
     </h1>
 
     <div class="alert alert-info text-center">
-        <p>{{$role->name}}</p>
+        <p><strong>Role:</strong> {{$role->name}}</p>
     </div>
 
     <div class="col-sm-6">

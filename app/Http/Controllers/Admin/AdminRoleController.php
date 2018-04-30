@@ -95,7 +95,7 @@ class AdminRoleController extends Controller
 
         $role->update(['name' => $request->name]);
 
-        return redirect()->route('admin.roles.index')->withSuccess("Role with id {$role->id} has been updated !");
+        return redirect()->route('admin.roles.edit', $role->id)->withSuccess('The role has been updated !');
     }
 
     /**

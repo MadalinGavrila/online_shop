@@ -9,7 +9,7 @@
     </h1>
 
     <div class="alert alert-info text-center">
-        <p>{{$user->full_name}}</p>
+        <p><strong>User:</strong> {{$user->full_name}}</p>
     </div>
 
     <div class="col-sm-6">

@@ -44,7 +44,8 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Category</th>
+                        <th>Category
+                        <th>Products</th>
                         <th>Created</th>
                         <th>Updated</th>
                     </tr>
@@ -55,6 +56,7 @@
                             <td>{{$subCategory->id}}</td>
                             <td><a href="{{route('admin.subCategories.edit', $subCategory->id)}}">{{$subCategory->name}}</a></td>
                             <td><a href="{{route('admin.categories.show', $subCategory->category->id)}}">{{$subCategory->category->name}}</a></td>
+                            <td><a href="{{route('admin.subCategories.show', $subCategory->id)}}">{{$subCategory->products->count()}}</a></td>
                             <td>{{$subCategory->created_at->diffForHumans()}}</td>
                             <td>{{$subCategory->updated_at->diffForHumans()}}</td>
                         </tr>

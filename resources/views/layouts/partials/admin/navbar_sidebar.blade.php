@@ -43,5 +43,13 @@
                 </li>
             </ul>
         </li>
+        <li class="{{Request::is('admin/media*') ? 'active' : ''}}">
+            <a href="javascript:;" data-toggle="collapse" data-target="#media"><i class="fa fa-picture-o"></i> Media <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="media" class="collapse">
+                <li>
+                    <a href="{{route('admin.media.index')}}"><i class="fa fa-file-image-o"></i> List Photos</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>

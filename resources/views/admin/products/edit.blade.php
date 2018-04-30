@@ -10,6 +10,10 @@
         Products <small>Update</small>
     </h1>
 
+    <div class="alert alert-info text-center">
+        <p><strong>Product:</strong> {{$product->name}}</p>
+    </div>
+
     <div class="col-md-3">
         <img src="{{$product->photos->first() ? $product->photos->first()->path : $product->photoPlaceholder()}}" alt="image" class="img-responsive img-rounded" />
 
@@ -25,9 +29,12 @@
     </div>
 
     <div class="col-sm-9">
-            @include('layouts.partials.form_errors')
 
-            {!! Form::model($product, ['method'=>'PATCH', 'action'=>['Admin\AdminProductController@update', $product->id], 'files'=>true]) !!}
+        @include('layouts.partials.alerts')
+
+        @include('layouts.partials.form_errors')
+
+        {!! Form::model($product, ['method'=>'PATCH', 'action'=>['Admin\AdminProductController@update', $product->id], 'files'=>true]) !!}
 
             <div class="col-sm-6">
                 <div class="form-group">
@@ -37,7 +44,7 @@
 
                 <div class="form-group">
                     {!! Form::label('brand', 'Brand:') !!}
-                    {!! Form::select('brand', $brands, $product->brands->first()->id, ['class'=>'form-control']) !!}
+                    {!! Form::select('brand', $brands, $product->brands->first() ? $product->brands->first()->id : null, ['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group">
@@ -67,7 +74,7 @@
                 </div>
             </div>
 
-            {!! Form::close() !!}
+        {!! Form::close() !!}
     </div>
 
 @endsection

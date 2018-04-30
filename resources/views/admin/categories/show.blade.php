@@ -9,7 +9,7 @@
     </h1>
 
     <div class="alert alert-info text-center">
-        <p>{{$category->name}}</p>
+        <p><strong>Category:</strong> {{$category->name}}</p>
     </div>
 
     <div class="col-sm-6">
@@ -43,6 +43,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Products</th>
                         <th>Created</th>
                         <th>Updated</th>
                     </tr>
@@ -52,6 +53,7 @@
                         <tr>
                             <td>{{$subCategory->id}}</td>
                             <td><a href="{{route('admin.subCategories.edit', $subCategory->id)}}">{{$subCategory->name}}</a></td>
+                            <td><a href="{{route('admin.subCategories.show', $subCategory->id)}}">{{$subCategory->products->count()}}</a></td>
                             <td>{{$subCategory->created_at->diffForHumans()}}</td>
                             <td>{{$subCategory->updated_at->diffForHumans()}}</td>
                         </tr>

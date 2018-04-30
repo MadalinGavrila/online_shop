@@ -62,7 +62,11 @@ class AdminSubCategoryController extends Controller
      */
     public function show($id)
     {
-        return redirect()->back();
+        $subCategory = SubCategory::findOrFail($id);
+
+        $subCategory_products = $subCategory->products()->orderBy('created_at', 'desc')->paginate(8);
+
+        return view('admin.categories.sub_categories.show', compact('subCategory', 'subCategory_products'));
     }
 
     /**
@@ -101,7 +105,7 @@ class AdminSubCategoryController extends Controller
             'category_id' => $request->category_id
         ]);
 
-        return redirect()->route('admin.subCategories.index')->withSuccess("SubCategory with id {$subCategory->id} has been updated !");
+        return redirect()->route('admin.subCategories.edit', $subCategory->id)->withSuccess('The SubCategory has been updated !');
     }
 
     /**

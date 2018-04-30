@@ -88,7 +88,7 @@ class AdminPermissionController extends Controller
 
         $permission->update(['name' => $request->name]);
 
-        return redirect()->route('admin.permissions.index')->withSuccess("Permission with id {$permission->id} has been updated !");
+        return redirect()->route('admin.permissions.edit', $permission->id)->withSuccess('The permission has been updated !');
     }
 
     /**

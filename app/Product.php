@@ -33,6 +33,16 @@ class Product extends Model
         return $this->uploads . "placeholder_product.png";
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getRoute()
+    {
+        return 'admin.products.showPhotos';
+    }
+
     public function addSubCategory($subCategory_id)
     {
         $subCategory = SubCategory::find($subCategory_id);

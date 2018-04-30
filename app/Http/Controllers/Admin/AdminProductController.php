@@ -99,6 +99,51 @@ class AdminProductController extends Controller
         return view('admin.products.show', compact('product', 'product_subCategories', 'categories'));
     }
 
+    public function showPhotos($id)
+    {
+        $product = Product::findOrFail($id);
+
+        $productPhotos = $product->photos()->orderBy('created_at', 'desc')->paginate(8);
+
+        return view('admin.products.show_photos', compact('product', 'productPhotos'));
+    }
+
+    public function addPhoto(Request $request, $id)
+    {
+        $this->validate($request, [
+            'photo' => 'required|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        $file = $request->file('photo');
+
+        $name = time() . $file->getClientOriginalName();
+
+        $file->move('images', $name);
+
+        $product->photos()->create(['path' => $name]);
+
+        return redirect()->route('admin.products.showPhotos', $product->id)->withSuccess('The photo has been added !');
+    }
+
+    public function deletePhoto(Request $request, $id)
+    {
+        if(auth()->user()->can('delete photos')){
+            $product = Product::findOrFail($id);
+
+            $photo = $product->photos()->whereId($request->photo)->first();
+
+            unlink(public_path() . $photo->path);
+
+            $photo->delete();
+
+            return redirect()->route('admin.products.showPhotos', $product->id)->withSuccess('The photo has been deleted !');
+        }
+
+        return redirect()->back();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -135,7 +180,7 @@ class AdminProductController extends Controller
 
         $product->updateBrand($request->brand);
 
-        return redirect()->route('admin.products.index')->withSuccess("Product with id {$product->id} has been updated !");
+        return redirect()->route('admin.products.edit', $product->id)->withSuccess('The product has been updated !');
     }
 
     /**

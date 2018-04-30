@@ -20,6 +20,10 @@ Route::group(['middleware' => 'role:admin'], function(){
 
     Route::get('/admin', 'Admin\AdminController@index')->name('admin');
 
+    Route::get('/admin/media', 'Admin\AdminMediaController@index')->name('admin.media.index');
+
+    Route::delete('/admin/media/{photo}', 'Admin\AdminMediaController@destroy')->name('admin.media.destroy');
+
     Route::resource('/admin/categories', 'Admin\AdminCategoryController', ['names'=>[
         'index' => 'admin.categories.index',
         'create' => 'admin.categories.create',
@@ -67,6 +71,12 @@ Route::group(['middleware' => 'role:admin'], function(){
     Route::post('/admin/products/{product}/withdrawSubCategory', 'Admin\AdminProductController@withdrawSubCategory')->name('admin.products.withdrawSubCategory');
 
     Route::post('/admin/products/ajaxSubCategory', 'Admin\AdminProductController@ajaxSubCategory')->name('admin.products.ajaxSubCategory');
+
+    Route::get('/admin/products/{product}/showPhotos', 'Admin\AdminProductController@showPhotos')->name('admin.products.showPhotos');
+
+    Route::post('/admin/products/{product}/addPhoto', 'Admin\AdminProductController@addPhoto')->name('admin.products.addPhoto');
+
+    Route::delete('/admin/products/{product}/deletePhoto', 'Admin\AdminProductController@deletePhoto')->name('admin.products.deletePhoto');
 
     Route::group(['middleware' => 'permission:crud roles'], function(){
         Route::resource('/admin/roles', 'Admin\AdminRoleController', ['names'=>[

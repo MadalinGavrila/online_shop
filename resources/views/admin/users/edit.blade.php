@@ -11,11 +11,13 @@
     </h1>
 
     <div class="alert alert-info text-center">
-        <p>{{$user->full_name}}</p>
+        <p><strong>User:</strong> {{$user->full_name}} / {{$user->email}}</p>
     </div>
 
     <div class="col-sm-6">
         <div class="col-sm-8 col-md-offset-2">
+
+            @include('layouts.partials.alerts')
 
             @include('layouts.partials.form_errors')
 

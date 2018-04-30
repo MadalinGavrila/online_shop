@@ -116,7 +116,7 @@ class AdminBrandController extends Controller
             $brand->photo()->create(['path' => $name]);
         }
 
-        return redirect()->route('admin.brands.index')->withSuccess("Brand with id {$brand->id} has been updated !");
+        return redirect()->route('admin.brands.edit', $brand->id)->withSuccess('The brand has been updated !');
     }
 
     /**

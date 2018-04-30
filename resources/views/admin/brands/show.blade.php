@@ -9,7 +9,7 @@
     </h1>
 
     <div class="alert alert-info text-center">
-        <p>{{$brand->name}}</p>
+        <p><strong>Brand:</strong> {{$brand->name}}</p>
     </div>
 
     <div class="col-sm-12">
@@ -39,8 +39,14 @@
                         <tr>
                             <td>{{$product->id}}</td>
                             <td><a href="">{{$product->name}}</a></td>
-                            <td><img height="50" src="{{$product->photos->first() ? $product->photos->first()->path : $product->photoPlaceholder()}}" alt="image" /></td>
-                            <td>{{$product->brands->first()->name}}</td>
+                            <td><a href="{{route('admin.products.showPhotos', $product->id)}}">{{$product->photos->count()}}</a></td>
+                            <td>
+                                @if($product->brands->first())
+                                    <a href="{{route('admin.brands.show', $product->brands->first()->id)}}">{{$product->brands->first()->name}}</a>
+                                @else
+                                    No Brand
+                                @endif
+                            </td>
                             <td><a href="{{route('admin.products.show', $product->id)}}">{{$product->subCategories->count()}}</a></td>
                             <td>{{$product->price}}</td>
                             <td>{{$product->stock}}</td>

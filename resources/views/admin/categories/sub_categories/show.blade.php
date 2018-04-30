@@ -5,11 +5,15 @@
 @section('content')
 
     <h1 class="page-header">
-        Products <small>List</small>
+        SubCategories <small>Products</small>
     </h1>
 
+    <div class="alert alert-info text-center">
+        <p><strong>SubCategory:</strong> {{$subCategory->name}}</p>
+    </div>
+
     <div class="col-sm-12">
-        @if(count($products))
+        @if(count($subCategory_products))
 
             @include('layouts.partials.alerts')
 
@@ -19,7 +23,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
-                        <th>Photos</th>
+                        <th>Photo</th>
                         <th>Brand</th>
                         <th>SubCategories</th>
                         <th>Price</th>
@@ -31,7 +35,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($products as $product)
+                    @foreach($subCategory_products as $product)
                         <tr>
                             <td>{{$product->id}}</td>
                             <td><a href="">{{$product->name}}</a></td>
@@ -58,7 +62,7 @@
 
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-5">
-                    {{$products->links()}}
+                    {{$subCategory_products->links()}}
                 </div>
             </div>
         @else

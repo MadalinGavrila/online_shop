@@ -10,8 +10,14 @@
         Categories <small>Update</small>
     </h1>
 
+    <div class="alert alert-info text-center">
+        <p><strong>Category:</strong> {{$category->name}}</p>
+    </div>
+
     <div class="col-sm-6">
         <div class="col-sm-8 col-md-offset-2">
+
+            @include('layouts.partials.alerts')
 
             @include('layouts.partials.form_errors')
 

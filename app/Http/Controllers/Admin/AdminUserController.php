@@ -95,7 +95,7 @@ class AdminUserController extends Controller
 
         $user->giveRole($request->role);
 
-        return redirect()->route('admin.users.index')->withSuccess("User {$user->full_name} has been updated !");
+        return redirect()->route('admin.users.edit', $user->id)->withSuccess('The user has been updated !');
     }
 
     /**
