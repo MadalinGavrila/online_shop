@@ -3,20 +3,16 @@
     <div class="col-md-12">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                @foreach($slides as $slide)
+                    <li data-target="#carousel-example-generic" data-slide-to="{{$loop->index}}" class="{{$loop->first ? 'active' : ''}}"></li>
+                @endforeach
             </ol>
             <div class="carousel-inner">
-                <div class="item active">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                </div>
-                <div class="item">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                </div>
-                <div class="item">
-                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                </div>
+                @foreach($slides as $slide)
+                    <div class="item {{$loop->first ? 'active' : ''}}">
+                        <img class="slide-image" src="{{$slide->photo}}" alt="images">
+                    </div>
+                @endforeach
             </div>
             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>

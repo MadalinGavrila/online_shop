@@ -24,6 +24,16 @@ Route::group(['middleware' => 'role:admin'], function(){
 
     Route::delete('/admin/media/{photo}', 'Admin\AdminMediaController@destroy')->name('admin.media.destroy');
 
+    Route::resource('/admin/media/slide', 'Admin\AdminSlideController', ['names'=>[
+        'index' => 'admin.media.slide.index',
+        'create' => 'admin.media.slide.create',
+        'store' => 'admin.media.slide.store',
+        'show' => 'admin.media.slide.show',
+        'edit' => 'admin.media.slide.edit',
+        'update' => 'admin.media.slide.update',
+        'destroy' => 'admin.media.slide.destroy'
+    ]]);
+
     Route::resource('/admin/categories', 'Admin\AdminCategoryController', ['names'=>[
         'index' => 'admin.categories.index',
         'create' => 'admin.categories.create',

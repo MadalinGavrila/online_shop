@@ -49,6 +49,9 @@
                 <li>
                     <a href="{{route('admin.media.index')}}"><i class="fa fa-file-image-o"></i> List Photos</a>
                 </li>
+                <li>
+                    <a href="{{route('admin.media.slide.index')}}"><i class="fa fa-camera"></i> Slides</a>
+                </li>
             </ul>
         </li>
     </ul>

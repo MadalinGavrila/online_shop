@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use Illuminate\Http\Request;
+use App\Slide;
 
 class HomeController extends Controller
 {
@@ -11,7 +11,9 @@ class HomeController extends Controller
     {
         $categories = Category::has('subCategories')->get();
 
-        return view('front.home', compact('categories'));
+        $slides = Slide::where('visible', 1)->orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('front.home', compact('categories', 'slides'));
     }
 
     public function product()
