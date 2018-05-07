@@ -14,7 +14,9 @@ Route::get('/contact', 'ContactController@index')->name('home.contact');
 
 Route::post('/contact', 'ContactController@sendMail');
 
-Route::get('/product', 'HomeController@product')->name('home.product');
+Route::get('/products/{product}', 'ProductController@show')->name('home.products.show');
+
+Route::get('/products/{category}/{subcategory}', 'ProductController@showByCategory')->name('home.products.showByCategory');
 
 Route::group(['middleware' => 'role:admin'], function(){
 

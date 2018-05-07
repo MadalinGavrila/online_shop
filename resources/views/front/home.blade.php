@@ -21,26 +21,60 @@
 @section('content')
 
     <div class="row">
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="http://placehold.it/320x150" alt="">
-                <div class="caption">
-                    <h4 class="pull-right">$24.99</h4>
-                    <h4><a href="#">First Product</a>
-                    </h4>
-                    <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                </div>
-                <div class="ratings">
-                    <p class="pull-right">15 reviews</p>
-                    <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                    </p>
-                </div>
+        <div class="col-sm-12">
+            <div class="controls pull-right">
+                <a class="left glyphicon glyphicon-chevron-left btn btn-primary btn-xs" href="#products-carousel" data-slide="prev"></a>
+                <a class="right glyphicon glyphicon-chevron-right btn btn-primary btn-xs" href="#products-carousel" data-slide="next"></a>
             </div>
+        </div>
+    </div>
+    <div id="products-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @foreach($products as $product)
+                @if(!($loop->index % 4))
+                    <div class="item {{$loop->first ? 'active' : ''}}">
+                        <div class="row">
+                @endif
+
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <div class="col-item">
+                        <div class="photo">
+                            <a href="{{route('home.products.show', $product->slug)}}">
+                                <img src="{{$product->photos->first() ? $product->photos->first()->path : $product->photoPlaceholder()}}" class="img-responsive" alt="images" />
+                            </a>
+                        </div>
+                        <div class="info">
+                            <div class="row">
+                                <div class="details col-sm-12">
+                                    <p class="name">{{$product->name}}</p>
+                                    <p class="price"><span class="glyphicon glyphicon-euro"></span> {{$product->price}}</p>
+                                </div>
+                            </div>
+                            <div class="separator clear-left">
+                                <p class="btn-add-to-cart">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Add
+                                </p>
+                                <p class="btn-details">
+                                    <a href="{{route('home.products.show', $product->slug)}}">Details</a>
+                                </p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+                @if(!($loop->iteration % 4))
+                        </div>
+                    </div>
+                @endif
+
+                @if($loop->count % 4)
+                    @if($loop->last)
+                        </div>
+                    </div>
+                    @endif
+                @endif
+            @endforeach
         </div>
     </div>
 

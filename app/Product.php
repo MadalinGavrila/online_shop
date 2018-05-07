@@ -5,6 +5,7 @@ namespace App;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -31,6 +32,11 @@ class Product extends Model
     public function photoPlaceholder()
     {
         return $this->uploads . "placeholder_product.png";
+    }
+
+    public function scopeByVisible(Builder $builder, $visible)
+    {
+        return $builder->where('visible', $visible);
     }
 
     public function getName()
@@ -88,7 +94,7 @@ class Product extends Model
 
     public function getNameAttribute($value)
     {
-        return ucwords($value);
+        return strtoupper($value);
     }
 
     public function subCategories()

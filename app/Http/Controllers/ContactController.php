@@ -9,7 +9,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('front.contact');
+        return view('front.contact.index');
     }
 
     public function sendMail(Request $request)

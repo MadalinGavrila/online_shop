@@ -7,7 +7,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     @foreach($category->subCategories as $subCategory)
-                        <li><a href="">{{$subCategory->name}}</a></li>
+                        <li><a href="{{route('home.products.showByCategory', [$category->slug, $subCategory->slug])}}">{{$subCategory->name}}</a></li>
                     @endforeach
                 </ul>
             </div>

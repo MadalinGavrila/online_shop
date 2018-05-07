@@ -38,7 +38,7 @@
                     @foreach($subCategory_products as $product)
                         <tr>
                             <td>{{$product->id}}</td>
-                            <td><a href="">{{$product->name}}</a></td>
+                            <td><a href="{{route('home.products.show', $product->slug)}}">{{$product->name}}</a></td>
                             <td><a href="{{route('admin.products.showPhotos', $product->id)}}">{{$product->photos->count()}}</a></td>
                             <td>
                                 @if($product->brands->first())
