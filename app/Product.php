@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Filters\Product\ProductFilters;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
@@ -32,6 +33,11 @@ class Product extends Model
     public function photoPlaceholder()
     {
         return $this->uploads . "placeholder_product.png";
+    }
+
+    public function scopeFilter(Builder $builder, $request, array $filters = [])
+    {
+        return (new ProductFilters($request))->add($filters)->filter($builder);
     }
 
     public function scopeByVisible(Builder $builder, $visible)
