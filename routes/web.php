@@ -14,6 +14,8 @@ Route::get('/contact', 'ContactController@index')->name('home.contact');
 
 Route::post('/contact', 'ContactController@sendMail');
 
+Route::get('/search', 'SearchController@index')->name('home.search');
+
 Route::get('/products/{product}', 'ProductController@show')->name('home.products.show');
 
 Route::get('/products/{category}/{subcategory}', 'ProductController@showByCategory')->name('home.products.showByCategory');

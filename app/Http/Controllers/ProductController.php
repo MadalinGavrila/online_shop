@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Filters\Product\ProductFilters;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -14,26 +15,19 @@ class ProductController extends Controller
 
         $subCategory = $category->subCategories()->where('slug', $subcategory_slug)->firstOrFail();
 
-        $products = $subCategory->products()->ByVisible(true)->with(['brands'])->filter($request, $this->getFilters())->orderBy('created_at', 'desc')->paginate(9);
+        $products = $subCategory->products()->byVisible(true)->with(['brands'])->filter($request)->paginate(12);
 
-        $categories = Category::has('subCategories')->get();
+        $products_id = $subCategory->products()->byVisible(true)->pluck('id')->all();
 
-        return view('front.products.show_by_category', compact('products', 'categories'));
+        $filters = ProductFilters::mappingsFilters($products_id);
+
+        return view('front.products.show_by_category', compact('products','filters', 'category_slug', 'subcategory_slug'));
     }
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->ByVisible(true)->firstOrFail();
+        $product = Product::where('slug', $slug)->byVisible(true)->firstOrFail();
 
-        $categories = Category::has('subCategories')->get();
-
-        return view('front.products.show', compact('product', 'categories'));
-    }
-
-    protected function getFilters()
-    {
-        return [
-            // add a specific filter
-        ];
+        return view('front.products.show', compact('product'));
     }
 }

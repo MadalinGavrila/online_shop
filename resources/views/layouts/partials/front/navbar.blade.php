@@ -18,9 +18,12 @@
                 </li>
             </ul>
 
-            <form class="navbar-form navbar-left" action="">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search" name="search">
+            <form class="navbar-form navbar-left" action="{{route('home.search')}}" method="GET">
+                <div class="form-group {{$errors->has('search') ? 'has-error has-feedback' : ''}}">
+                    <input type="text" class="form-control" placeholder="{{$errors->has('search') ? $errors->first('search') : 'Search'}}" name="search">
+                    @if($errors->has('search'))
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-default">Search</button>
             </form>

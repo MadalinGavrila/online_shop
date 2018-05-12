@@ -5,6 +5,7 @@ namespace App;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
@@ -25,6 +26,13 @@ class Brand extends Model
     protected $fillable = [
         'name', 'slug'
     ];
+
+    public function scopeByProducts(Builder $builder, $id)
+    {
+        return $builder->whereHas('products', function(Builder $builder) use ($id){
+            $builder->whereIn('id', $id);
+        });
+    }
 
     protected $uploads = '/images/';
 

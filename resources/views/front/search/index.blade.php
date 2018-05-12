@@ -13,16 +13,21 @@
 @section('content')
 
     @if(count($products))
+
+        <div class="alert alert-success text-center">
+            <p>Search: {{request()->query('search')}}</p>
+        </div>
+
         <div class="col-sm-3">
             <div class="panel-group">
                 @include('layouts.partials.ordering', [
-                    'route' => 'home.products.showByCategory',
-                    'route_params' => [$category_slug, $subcategory_slug]
+                    'route' => 'home.search',
+                    'route_params' => request()->only('search')
                 ])
 
                 @include('layouts.partials.filters', [
-                    'route' => 'home.products.showByCategory',
-                    'route_params' => [$category_slug, $subcategory_slug]
+                    'route' => 'home.search',
+                    'route_params' => request()->only('search')
                 ])
             </div>
         </div>

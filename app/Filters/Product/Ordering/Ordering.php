@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Filters\Product;
+namespace App\Filters\Product\Ordering;
 
 use App\Filters\FilterAbstract;
 use Illuminate\Database\Eloquent\Builder;
 
-class ActiveFilter extends FilterAbstract
+class Ordering extends FilterAbstract
 {
     public function mappings()
     {
         return [
-            'yes' => true,
-            'no' => false,
+            'newest' => ['created_at', 'desc'],
+            'price_asc' => ['price', 'asc'],
+            'price_desc' => ['price', 'desc'],
         ];
     }
 
@@ -23,6 +24,9 @@ class ActiveFilter extends FilterAbstract
             return $builder;
         }
 
-        return $builder->where('visible', $value);
+        $column = $value[0];
+        $direction = $value[1];
+
+        return $builder->orderBy($column, $direction);
     }
 }

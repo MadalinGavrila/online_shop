@@ -20,22 +20,20 @@
 
             @include('layouts.partials.alerts')
 
-            @include('layouts.partials.form_errors')
-
             {!! Form::open(['method'=>'POST', 'action'=>'ContactController@sendMail']) !!}
 
                 <div class="form-group">
-                    {!! Form::label('name', 'Name:') !!}
+                    {!! Form::label('name', 'Name:') !!} <span class="errors">{{$errors->has('name') ? $errors->first('name') : ''}}</span>
                     {!! Form::text('name', null, ['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('email', 'Email:') !!}
+                    {!! Form::label('email', 'Email:') !!} <span class="errors">{{$errors->has('email') ? $errors->first('email') : ''}}</span>
                     {!! Form::text('email', null, ['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('message', 'Message:') !!}
+                    {!! Form::label('message', 'Message:') !!} <span class="errors">{{$errors->has('message') ? $errors->first('message') : ''}}</span>
                     {!! Form::textarea('message', null, ['class'=>'form-control', 'rows'=>3]) !!}
                 </div>
 
