@@ -61,8 +61,8 @@
                         </ul>
                     </li>
                 @endguest
-                <li>
-                    <a href=""><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
+                <li class="{{Request::is('cart') ? 'active' : ''}}">
+                    <a href="{{route('cart')}}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">{{$cart->itemCount()}}</span></a>
                 </li>
             </ul>
         </div>

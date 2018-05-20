@@ -20,6 +20,14 @@ Route::get('/products/{product}', 'ProductController@show')->name('home.products
 
 Route::get('/products/{category}/{subcategory}', 'ProductController@showByCategory')->name('home.products.showByCategory');
 
+Route::get('/cart', 'CartController@index')->name('cart');
+
+Route::post('/cart/add/{product}', 'CartController@add')->name('cart.add');
+
+Route::post('/cart/update/{product}', 'CartController@update')->name('cart.update');
+
+Route::post('/cart/remove/{product}', 'CartController@remove')->name('cart.remove');
+
 Route::group(['middleware' => 'role:admin'], function(){
 
     Route::get('/admin', 'Admin\AdminController@index')->name('admin');

@@ -52,9 +52,20 @@
                                 </p>
                             </div>
                             <div class="product-buttons clear-left">
-                                <p class="btn-add-to-cart">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span> Add
-                                </p>
+                                @if($product->inStock())
+                                    <form class="btn-add-to-cart" method="POST" action="{{route('cart.add', $product->slug)}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-link btn-xs">
+                                            <span class="glyphicon glyphicon-shopping-cart"></span> Add
+                                        </button>
+                                    </form>
+                                @else
+                                    <p class="btn-add-to-cart">
+                                        <button type="button" class="btn btn-link btn-xs">
+                                            <span class="label label-danger">Sold Out</span>
+                                        </button>
+                                    </p>
+                                @endif
                                 <p class="btn-details">
                                     <a href="{{route('home.products.show', $product->slug)}}">Details</a>
                                 </p>

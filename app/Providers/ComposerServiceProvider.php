@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\CartViewComposer;
 use App\Http\ViewComposers\CategoriesViewComposer;
 use App\Http\ViewComposers\ProductOrderingViewComposer;
 use Illuminate\Support\Facades\View;
@@ -19,6 +20,8 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer('layouts.partials.ordering', ProductOrderingViewComposer::class);
 
         View::composer('layouts.partials.front.category', CategoriesViewComposer::class);
+
+        View::composer('layouts.partials.front.navbar', CartViewComposer::class);
     }
 
     /**

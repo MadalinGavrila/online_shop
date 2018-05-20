@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <div class="col-sm-10 col-md-offset-3">
+    <div class="col-sm-10 col-sm-offset-3">
 
         <h3 class="text-center">Contact</h3>
 

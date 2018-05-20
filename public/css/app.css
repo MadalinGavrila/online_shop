@@ -75,6 +75,16 @@
   text-decoration: none;
 }
 
+.col-item .btn-add-to-cart button:link,
+.col-item .btn-add-to-cart button:visited {
+  text-decoration: none;
+}
+
+.col-item .btn-add-to-cart button:hover,
+.col-item .btn-add-to-cart button:active {
+  text-decoration: none;
+}
+
 /* Products List */
 
 .products:hover {
@@ -130,6 +140,26 @@
 
 .products .ratings {
   font-size: 12px;
+}
+
+.products .product-buttons .btn-details a:link,
+.products .product-buttons .btn-details a:visited {
+  text-decoration: none;
+}
+
+.products .product-buttons .btn-details a:hover,
+.products .product-buttons .btn-details a:active {
+  text-decoration: none;
+}
+
+.products .product-buttons .btn-add-to-cart button:link,
+.products .product-buttons .btn-add-to-cart button:visited {
+  text-decoration: none;
+}
+
+.products .product-buttons .btn-add-to-cart button:hover,
+.products .product-buttons .btn-add-to-cart button:active {
+  text-decoration: none;
 }
 
 /* Product Detail Page */

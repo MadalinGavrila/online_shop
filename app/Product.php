@@ -35,6 +35,30 @@ class Product extends Model
         return $this->uploads . "placeholder_product.png";
     }
 
+    public function hasLowStock()
+    {
+        if($this->outOfStock()){
+            return false;
+        }
+
+        return (bool) ($this->stock <= 5);
+    }
+
+    public function outOfStock()
+    {
+        return $this->stock === 0;
+    }
+
+    public function inStock()
+    {
+        return $this->stock >= 1;
+    }
+
+    public function hasStock($quantity)
+    {
+        return $this->stock >= $quantity;
+    }
+
     public function scopeFilter(Builder $builder, $request, array $filters = [])
     {
         return (new ProductFilters($request))->add($filters)->filter($builder);
