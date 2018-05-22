@@ -78,7 +78,12 @@
                                 </tr>
                             </table>
 
-                            <a href="" class="btn btn-success">Checkout</a>
+                            @if(auth()->check())
+                                <a href="{{route('order')}}" class="btn btn-success">Checkout</a>
+                            @else
+                                <p class="alert alert-info">To Checkout you need to <a href="{{route('login')}}">login</a> or <a href="{{route('register')}}">register</a>.</p>
+                            @endif
+
                         </div>
                     </div>
                 </div>

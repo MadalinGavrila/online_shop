@@ -28,6 +28,16 @@ Route::post('/cart/update/{product}', 'CartController@update')->name('cart.updat
 
 Route::post('/cart/remove/{product}', 'CartController@remove')->name('cart.remove');
 
+Route::group(['middleware' => 'auth'], function(){
+
+    Route::get('/order', 'OrderController@index')->name('order');
+
+    Route::post('/order', 'OrderController@store')->name('order.store');
+
+    Route::get('/braintree/token', 'BraintreeController@token')->name('braintree.token');
+
+});
+
 Route::group(['middleware' => 'role:admin'], function(){
 
     Route::get('/admin', 'Admin\AdminController@index')->name('admin');

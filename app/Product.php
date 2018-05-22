@@ -24,6 +24,8 @@ class Product extends Model
         ];
     }
 
+    public $quantity = null;
+
     protected $fillable = [
         'name', 'price', 'stock', 'description', 'visible', 'slug'
     ];
@@ -140,5 +142,10 @@ class Product extends Model
     public function photos()
     {
         return $this->morphMany(Photo::class, 'imageable');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity');
     }
 }
