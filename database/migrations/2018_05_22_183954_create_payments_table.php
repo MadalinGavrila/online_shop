@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('order_id')->unsigned();
             $table->boolean('failed');
-            $table->string('transaction_id');
+            $table->string('transaction_id')->nullable();
             $table->timestamps();
         });
     }

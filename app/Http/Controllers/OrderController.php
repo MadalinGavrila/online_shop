@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Cart\Cart;
+use App\Events\Order\OrderWasCreated;
 use App\Http\Requests\Order\OrderCreateRequest;
 use Braintree_Gateway;
 
@@ -76,6 +77,12 @@ class OrderController extends Controller
                 'submitForSettlement' => True
             ]
         ]);
+
+        event(new OrderWasCreated($order, $cart, $result));
+
+        if(!$result->success){
+            return redirect()->route('order');
+        }
     }
 
     protected function getQuantities($items)

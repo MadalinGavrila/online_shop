@@ -16,6 +16,14 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Auth\UserRequestedActivationEmail' => [
             'App\Listeners\Auth\SendActivationEmail',
         ],
+
+        'App\Events\Order\OrderWasCreated' => [
+            'App\Listeners\Order\RecordFailedPayment',
+            'App\Listeners\Order\MarkOrderPaid',
+            'App\Listeners\Order\RecordSuccessfulPayment',
+            'App\Listeners\Order\UpdateStock',
+            'App\Listeners\Order\EmptyCart',
+        ],
     ];
 
     /**
