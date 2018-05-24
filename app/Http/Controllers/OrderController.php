@@ -6,6 +6,7 @@ use App\Address;
 use App\Cart\Cart;
 use App\Events\Order\OrderWasCreated;
 use App\Http\Requests\Order\OrderCreateRequest;
+use App\Order;
 use Braintree_Gateway;
 
 class OrderController extends Controller
@@ -74,7 +75,7 @@ class OrderController extends Controller
             'amount' => $cart->total(),
             'paymentMethodNonce' => $request->payment_method_nonce,
             'options' => [
-                'submitForSettlement' => True
+                'submitForSettlement' => true
             ]
         ]);
 
@@ -83,6 +84,15 @@ class OrderController extends Controller
         if(!$result->success){
             return redirect()->route('order');
         }
+
+        return redirect()->route('order.show', $order->hash);
+    }
+
+    public function show($hash)
+    {
+        $order = Order::with(['address', 'products'])->where('hash', $hash)->firstOrFail();
+
+        return view('front.order.show', compact('order'));
     }
 
     protected function getQuantities($items)

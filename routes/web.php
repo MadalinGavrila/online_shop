@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::post('/order', 'OrderController@store')->name('order.store');
 
+    Route::get('/order/{order}', 'OrderController@show')->name('order.show');
+
     Route::get('/braintree/token', 'BraintreeController@token')->name('braintree.token');
 
 });
