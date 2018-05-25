@@ -48,6 +48,8 @@ Route::group(['middleware' => 'role:admin'], function(){
 
     Route::delete('/admin/media/{photo}', 'Admin\AdminMediaController@destroy')->name('admin.media.destroy');
 
+    Route::get('/admin/payments', 'Admin\AdminPaymentController@index')->name('admin.payments.index');
+
     Route::resource('/admin/media/slide', 'Admin\AdminSlideController', ['names'=>[
         'index' => 'admin.media.slide.index',
         'create' => 'admin.media.slide.create',
@@ -111,6 +113,16 @@ Route::group(['middleware' => 'role:admin'], function(){
     Route::post('/admin/products/{product}/addPhoto', 'Admin\AdminProductController@addPhoto')->name('admin.products.addPhoto');
 
     Route::delete('/admin/products/{product}/deletePhoto', 'Admin\AdminProductController@deletePhoto')->name('admin.products.deletePhoto');
+
+    Route::resource('/admin/orders', 'Admin\AdminOrderController', ['names'=>[
+        'index' => 'admin.orders.index',
+        'create' => 'admin.orders.create',
+        'store' => 'admin.orders.store',
+        'show' => 'admin.orders.show',
+        'edit' => 'admin.orders.edit',
+        'update' => 'admin.orders.update',
+        'destroy' => 'admin.orders.destroy'
+    ]]);
 
     Route::group(['middleware' => 'permission:crud roles'], function(){
         Route::resource('/admin/roles', 'Admin\AdminRoleController', ['names'=>[
