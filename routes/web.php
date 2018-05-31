@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/braintree/token', 'BraintreeController@token')->name('braintree.token');
 
+    Route::post('/review', 'ReviewController@store')->name('review.store');
+
 });
 
 Route::group(['middleware' => 'role:admin'], function(){

@@ -199,3 +199,24 @@
   border: 1px solid #222222;
 }
 
+/* Product Detail Page Reviews */
+
+.star-review input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.star-review .glyphicon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.star-review {
+  margin: 15px 0;
+  padding: 0;
+}
+
+#close-review-box {
+  margin-right: 5px;
+}
+

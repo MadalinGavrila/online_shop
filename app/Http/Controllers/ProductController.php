@@ -28,6 +28,8 @@ class ProductController extends Controller
     {
         $product = Product::where('slug', $slug)->byVisible(true)->firstOrFail();
 
-        return view('front.products.show', compact('product'));
+        $reviews = $product->reviews()->orderBy('created_at', 'desc')->get();
+
+        return view('front.products.show', compact('product', 'reviews'));
     }
 }

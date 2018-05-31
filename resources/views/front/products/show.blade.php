@@ -79,40 +79,84 @@
             </div>
         </div>
         <div class="ratings">
-            <p class="pull-right">1 reviews</p>
+            <p class="pull-right">{{$reviews->count()}} reviews</p>
             <p>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                4.0 stars
+                @for($i = 1; $i <= 5; $i++)
+                    @if($i <= floor($reviews->avg('rating')))
+                        <span class="glyphicon glyphicon-star"></span>
+                    @else
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    @endif
+                @endfor
+                {{number_format($reviews->avg('rating'), 2)}} stars
             </p>
         </div>
     </div>
 
     <div class="well">
 
-        <div class="text-right">
-            <a class="btn btn-primary">Leave a Review</a>
-        </div>
+        @if(auth()->check())
 
-        <hr>
+            @include('layouts.partials.form_errors')
 
-        <div class="row">
-            <div class="col-md-12">
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                Anonymous
-                <span class="pull-right">10 days ago</span>
-                <p>This product was great in terms of quality. I would definitely buy another!</p>
+            @include('layouts.partials.alerts')
+
+            <div class="text-right">
+                <a href="#" class="btn btn-primary" id="open-review-box">Leave a Review</a>
             </div>
-        </div>
 
-        <hr>
+            <div class="row" id="post-review-box" style="display: none;">
+                <div class="col-sm-12 col-md-12">
+                    {!! Form::open(['method'=>'POST', 'action'=>'ReviewController@store']) !!}
+
+                        <input type="hidden" name="product_id" value="{{$product->id}}" />
+
+                        {!! Form::textarea('review', null, ['class'=>'form-control', 'rows'=>2, 'placeholder'=>'Enter your review here...', 'style'=>'resize: vertical;']) !!}
+
+                        <div class="text-right">
+                            <div class="ratings star-review">
+                                @for($i = 1; $i <= 5; $i++)
+                                    <label>
+                                        <input type="radio" name="rating" value="{{$i}}" onclick="add({{$i}})" /><span id="star{{$i}}" class="glyphicon glyphicon-star-empty"></span>
+                                    </label>
+                                @endfor
+                            </div>
+
+                            <a href="#" class="btn btn-danger btn-xs" id="close-review-box">
+                                <span class="glyphicon glyphicon-remove"></span> Cancel
+                            </a>
+
+                            {!! Form::submit('Save', ['class'=>'btn btn-success btn-xs']) !!}
+                        </div>
+
+                    {!! Form::close() !!}
+                </div>
+            </div>
+
+            <hr>
+        @endif
+
+        @if($reviews->count())
+            @foreach($reviews as $review)
+                <div class="row">
+                    <div class="col-md-12">
+                        @for($i = 1; $i <= 5; $i++)
+                           @if($i <= $review->rating)
+                                <span class="glyphicon glyphicon-star"></span>
+                           @else
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                           @endif
+                        @endfor
+
+                        {{$review->user->full_name}}
+                        <span class="pull-right">{{$review->created_at->diffForHumans()}}</span>
+                        <p>{{$review->body}}</p>
+                    </div>
+                </div>
+
+                <hr>
+            @endforeach
+        @endif
 
     </div>
 
@@ -126,6 +170,8 @@
 
     <script>
 
+        // Photo Modal
+
         $(document).ready(function(){
 
             $(".product-photo").on('click', function(){
@@ -138,6 +184,43 @@
 
             });
 
+        });
+
+        // Star Rating
+
+        function add(star_number){
+
+            for(var i = 1; i <= 5; i++){
+                var star = document.getElementById("star" + i);
+                star.className = "glyphicon glyphicon-star-empty";
+            }
+
+            for(var i = 1; i <= star_number; i++){
+                var star = document.getElementById("star" + i);
+                if(star.className == "glyphicon glyphicon-star-empty"){
+                    star.className = "glyphicon glyphicon-star";
+                }
+            }
+
+        }
+
+        // Review Box
+
+        var openReviewBox = $("#open-review-box");
+        var postReviewBox = $("#post-review-box");
+        var closeReviewBox = $("#close-review-box");
+
+        openReviewBox.click(function(e){
+            e.preventDefault();
+            postReviewBox.slideDown(400);
+            openReviewBox.fadeOut(100);
+        });
+
+        closeReviewBox.click(function(e){
+            e.preventDefault();
+            postReviewBox.slideUp(300, function(){
+                openReviewBox.fadeIn(200);
+            });
         });
 
     </script>
