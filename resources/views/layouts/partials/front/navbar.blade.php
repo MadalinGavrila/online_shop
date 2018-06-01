@@ -46,10 +46,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> {{Auth::user()->full_name}} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href=""><i class="glyphicon glyphicon-user"></i> Profile</a>
-                            </li>
-                            <li>
-                                <a href=""><i class="glyphicon glyphicon-wrench"></i> Settings</a>
+                                <a href="{{route('account')}}"><i class="glyphicon glyphicon-user"></i> Profile</a>
                             </li>
                             <li class="divider"></li>
                             <li>

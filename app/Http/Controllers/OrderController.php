@@ -90,7 +90,7 @@ class OrderController extends Controller
 
     public function show($hash)
     {
-        $order = Order::with(['address', 'products'])->where('hash', $hash)->firstOrFail();
+        $order = auth()->user()->orders()->with(['address', 'products'])->where('hash', $hash)->firstOrFail();
 
         return view('front.order.show', compact('order'));
     }

@@ -60,5 +60,8 @@
         <li class="{{Request::is('admin/payments*') ? 'active' : ''}}">
             <a href="{{route('admin.payments.index')}}"><i class="fa fa-credit-card"></i> Payments</a>
         </li>
+        <li class="{{Request::is('admin/reviews*') ? 'active' : ''}}">
+            <a href="{{route('admin.reviews.index')}}"><i class="fa fa-comments"></i> Reviews</a>
+        </li>
     </ul>
 </div>

@@ -40,6 +40,22 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::post('/review', 'ReviewController@store')->name('review.store');
 
+    Route::get('/account', 'Account\AccountController@index')->name('account');
+
+    Route::get('/account/edit', 'Account\AccountController@edit')->name('account.edit');
+
+    Route::post('/account/edit', 'Account\AccountController@update')->name('account.update');
+
+    Route::get('/account/password', 'Account\AccountController@password')->name('account.password');
+
+    Route::post('/account/password', 'Account\AccountController@change_password')->name('account.change_password');
+
+    Route::get('/account/orders', 'Account\AccountController@orders')->name('account.orders');
+
+    Route::get('/account/reviews', 'Account\AccountController@reviews')->name('account.reviews');
+
+    Route::delete('/account/reviews/{review}', 'Account\AccountController@destroy_review')->name('account.destroy_review');
+
 });
 
 Route::group(['middleware' => 'role:admin'], function(){
@@ -124,6 +140,16 @@ Route::group(['middleware' => 'role:admin'], function(){
         'edit' => 'admin.orders.edit',
         'update' => 'admin.orders.update',
         'destroy' => 'admin.orders.destroy'
+    ]]);
+
+    Route::resource('/admin/reviews', 'Admin\AdminReviewController', ['names'=>[
+        'index' => 'admin.reviews.index',
+        'create' => 'admin.reviews.create',
+        'store' => 'admin.reviews.store',
+        'show' => 'admin.reviews.show',
+        'edit' => 'admin.reviews.edit',
+        'update' => 'admin.reviews.update',
+        'destroy' => 'admin.reviews.destroy'
     ]]);
 
     Route::group(['middleware' => 'permission:crud roles'], function(){
