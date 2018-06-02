@@ -152,6 +152,16 @@ Route::group(['middleware' => 'role:admin'], function(){
         'destroy' => 'admin.reviews.destroy'
     ]]);
 
+    Route::resource('/admin/notifications', 'Admin\AdminNotificationsController', ['names'=>[
+        'index' => 'admin.notifications.index',
+        'create' => 'admin.notifications.create',
+        'store' => 'admin.notifications.store',
+        'show' => 'admin.notifications.show',
+        'edit' => 'admin.notifications.edit',
+        'update' => 'admin.notifications.update',
+        'destroy' => 'admin.notifications.destroy'
+    ]]);
+
     Route::group(['middleware' => 'permission:crud roles'], function(){
         Route::resource('/admin/roles', 'Admin\AdminRoleController', ['names'=>[
             'index' => 'admin.roles.index',

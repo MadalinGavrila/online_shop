@@ -26,7 +26,9 @@
                         <th>Rating</th>
                         <th>Created</th>
                         <th>Updated</th>
-                        <th>Delete</th>
+                        @can('delete reviews')
+                            <th>Delete</th>
+                        @endcan
                     </tr>
                     </thead>
                     <tbody>

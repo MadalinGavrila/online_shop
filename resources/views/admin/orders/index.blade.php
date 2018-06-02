@@ -25,7 +25,9 @@
                         <th>Total</th>
                         <th>Created</th>
                         <th>Updated</th>
-                        <th>Delete</th>
+                        @can('delete orders')
+                            <th>Delete</th>
+                        @endcan
                     </tr>
                     </thead>
                     <tbody>

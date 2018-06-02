@@ -6,7 +6,9 @@ use App\Address;
 use App\Cart\Cart;
 use App\Events\Order\OrderWasCreated;
 use App\Http\Requests\Order\OrderCreateRequest;
+use App\Notifications\OrderCreated;
 use App\Order;
+use App\User;
 use Braintree_Gateway;
 
 class OrderController extends Controller
@@ -80,6 +82,14 @@ class OrderController extends Controller
         ]);
 
         event(new OrderWasCreated($order, $cart, $result));
+
+        $usersActive = User::where('active', 1)->get();
+
+        foreach($usersActive as $admin){
+            if($admin->hasRole('admin')){
+                $admin->notify(new OrderCreated($order));
+            }
+        }
 
         if(!$result->success){
             return redirect()->route('order');

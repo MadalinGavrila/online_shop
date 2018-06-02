@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\ReviewPosted;
 use App\Product;
 use App\Review;
+use App\User;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -23,6 +25,14 @@ class ReviewController extends Controller
         $review->user()->associate($request->user());
 
         $product->reviews()->save($review);
+
+        $usersActive = User::where('active', 1)->get();
+
+        foreach($usersActive as $admin){
+            if($admin->hasRole('admin')){
+                $admin->notify(new ReviewPosted($review));
+            }
+        }
 
         return redirect()->back()->withSuccess('Your review has been created !');
     }
