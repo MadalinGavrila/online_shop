@@ -6,10 +6,6 @@
     @include('layouts.partials.front.navbar')
 @endsection
 
-@section('flash_message')
-    @include('layouts.partials.alerts')
-@endsection
-
 @section('category')
     @include('layouts.partials.front.category')
 @endsection

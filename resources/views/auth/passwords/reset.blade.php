@@ -1,6 +1,6 @@
 @extends('layouts.front')
 
-@section('title', 'Login')
+@section('title', 'Reset Password')
 
 @section('navbar')
     @include('layouts.partials.front.navbar')

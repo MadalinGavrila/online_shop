@@ -23,8 +23,6 @@ class ActivationController extends Controller
             'activation_token' => null
         ]);
 
-        Auth::loginUsingId($user->id);
-
-        return redirect()->route('home')->withSuccess('Activated! You\'re now signed in');
+        return redirect()->route('login')->withSuccess('Activated! You can now login !');
     }
 }

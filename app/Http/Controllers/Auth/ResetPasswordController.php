@@ -47,10 +47,6 @@ class ResetPasswordController extends Controller
         $user->save();
 
         event(new PasswordReset($user));
-
-        if($user->active){
-            $this->guard()->login($user);
-        }
     }
 
     protected function sendResetResponse($response)
