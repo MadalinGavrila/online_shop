@@ -14,8 +14,6 @@
 
         @include('layouts.partials.alerts')
 
-        @include('layouts.partials.form_errors')
-
         {!! Form::model($slide, ['method'=>'PATCH', 'action'=>['Admin\AdminSlideController@update', $slide->id], 'files'=>true]) !!}
 
             <div class="form-group">

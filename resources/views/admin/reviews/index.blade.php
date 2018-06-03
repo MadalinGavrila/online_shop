@@ -18,18 +18,18 @@
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>User</th>
-                        <th>Product</th>
-                        <th>Body</th>
-                        <th>Rating</th>
-                        <th>Created</th>
-                        <th>Updated</th>
-                        @can('delete reviews')
-                            <th>Delete</th>
-                        @endcan
-                    </tr>
+                        <tr>
+                            <th>Id</th>
+                            <th>User</th>
+                            <th>Product</th>
+                            <th>Body</th>
+                            <th>Rating</th>
+                            <th>Created</th>
+                            <th>Updated</th>
+                            @can('delete reviews')
+                                <th>Delete</th>
+                            @endcan
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach($reviews as $review)

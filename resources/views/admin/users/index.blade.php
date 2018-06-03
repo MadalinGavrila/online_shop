@@ -16,16 +16,16 @@
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Permissions</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>Updated</th>
-                    </tr>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Permissions</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Updated</th>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach($users as $user)

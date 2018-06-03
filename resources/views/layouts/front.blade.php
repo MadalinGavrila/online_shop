@@ -38,8 +38,6 @@
 
     <div class="row">
 
-        @yield('flash_message')
-
         @yield('category')
 
         <div class="col-md-9">

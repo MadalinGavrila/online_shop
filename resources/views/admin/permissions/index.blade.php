@@ -15,14 +15,14 @@
 
             {!! Form::open(['method'=>'POST', 'action'=>'Admin\AdminPermissionController@store']) !!}
 
-            <div class="form-group">
-                {!! Form::label('name', 'Name:') !!}
-                {!! Form::text('name', null, ['class'=>'form-control']) !!}
-            </div>
+                <div class="form-group">
+                    {!! Form::label('name', 'Name:') !!}
+                    {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                </div>
 
-            <div class="form-group">
-                {!! Form::submit('Create Permission', ['class'=>'btn btn-primary btn-block']) !!}
-            </div>
+                <div class="form-group">
+                    {!! Form::submit('Create Permission', ['class'=>'btn btn-primary btn-block']) !!}
+                </div>
 
             {!! Form::close() !!}
         </div>

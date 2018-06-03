@@ -34,49 +34,49 @@
     </div>
 
     <div class="col-sm-6">
-    @if(count($user_permissions))
+        @if(count($user_permissions))
 
-        @include('layouts.partials.alerts')
+            @include('layouts.partials.alerts')
 
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($user_permissions as $permission)
-                    <tr>
-                        <td>{{$permission->name}}</td>
-                        <td>
-                            {!! Form::open(['method'=>'POST', 'action'=>['Admin\AdminUserController@withdrawPermission', $user->id]]) !!}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($user_permissions as $permission)
+                        <tr>
+                            <td>{{$permission->name}}</td>
+                            <td>
+                                {!! Form::open(['method'=>'POST', 'action'=>['Admin\AdminUserController@withdrawPermission', $user->id]]) !!}
 
-                                <input type="hidden" name="permission" value="{{$permission->name}}" />
+                                    <input type="hidden" name="permission" value="{{$permission->name}}" />
 
-                                <div class="form-group">
-                                    {!! Form::submit('Remove', ['class'=>'btn btn-danger btn-xs']) !!}
-                                </div>
+                                    <div class="form-group">
+                                        {!! Form::submit('Remove', ['class'=>'btn btn-danger btn-xs']) !!}
+                                    </div>
 
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-5">
-                {{$user_permissions->links()}}
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-        </div>
-    @else
-        <div class="alert alert-success text-center">
-            <p>No Permissions</p>
-        </div>
-    @endif
+
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-5">
+                    {{$user_permissions->links()}}
+                </div>
+            </div>
+        @else
+            <div class="alert alert-success text-center">
+                <p>No Permissions</p>
+            </div>
+        @endif
     </div>
 
 @endsection

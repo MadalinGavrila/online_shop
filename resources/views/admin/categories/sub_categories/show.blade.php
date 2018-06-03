@@ -14,9 +14,6 @@
 
     <div class="col-sm-12">
         @if(count($subCategory_products))
-
-            @include('layouts.partials.alerts')
-
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>

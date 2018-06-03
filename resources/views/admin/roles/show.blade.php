@@ -41,10 +41,10 @@
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Remove</th>
-                    </tr>
+                        <tr>
+                            <th>Name</th>
+                            <th>Remove</th>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach($role_permissions as $permission)
