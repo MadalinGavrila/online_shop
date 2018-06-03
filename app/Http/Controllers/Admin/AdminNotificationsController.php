@@ -78,6 +78,13 @@ class AdminNotificationsController extends Controller
         return redirect()->route('admin.notifications.index')->withSuccess('Notification has been mark as read !');
     }
 
+    public function ajaxMarkAsRead(Request $request)
+    {
+        $notification = auth()->user()->unreadNotifications()->where('id', $request->notificationId)->firstOrFail();
+
+        $notification->markAsRead();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

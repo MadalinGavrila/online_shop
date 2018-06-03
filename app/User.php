@@ -64,4 +64,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    public static function admins()
+    {
+        return User::where('active', 1)->whereHas('roles', function($query){
+            $query->where('name', 'admin');
+        })->get();
+    }
 }

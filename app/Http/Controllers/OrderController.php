@@ -83,12 +83,10 @@ class OrderController extends Controller
 
         event(new OrderWasCreated($order, $cart, $result));
 
-        $usersActive = User::where('active', 1)->get();
+        $admins = User::admins();
 
-        foreach($usersActive as $admin){
-            if($admin->hasRole('admin')){
-                $admin->notify(new OrderCreated($order));
-            }
+        foreach($admins as $admin){
+            $admin->notify(new OrderCreated($order));
         }
 
         if(!$result->success){

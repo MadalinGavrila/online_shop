@@ -178,4 +178,25 @@
         });
     </script>
 
+    <script>
+
+        // Notifications Mark As Read
+
+        $("a[data-notification-id]").click(function(){
+
+            var notificationId = $(this).data("notification-id");
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('admin.notifications.ajaxMarkAsRead')}}",
+                method: "POST",
+                data: {notificationId:notificationId}
+            });
+
+        });
+
+    </script>
+
 @endsection

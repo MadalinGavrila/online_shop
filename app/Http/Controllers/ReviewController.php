@@ -26,12 +26,10 @@ class ReviewController extends Controller
 
         $product->reviews()->save($review);
 
-        $usersActive = User::where('active', 1)->get();
+        $admins = User::admins();
 
-        foreach($usersActive as $admin){
-            if($admin->hasRole('admin')){
-                $admin->notify(new ReviewPosted($review));
-            }
+        foreach($admins as $admin){
+            $admin->notify(new ReviewPosted($review));
         }
 
         return redirect()->back()->withSuccess('Your review has been created !');

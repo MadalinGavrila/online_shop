@@ -9,6 +9,8 @@
     <meta name="description" content="Shop Madalin Gavrila">
     <meta name="author" content="Madalin Gavrila">
 
+    <meta name="csrf-token" content="{{csrf_token()}}">
+
     <title>@yield('title')</title>
 
     <!-- CSS -->

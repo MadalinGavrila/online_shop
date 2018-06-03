@@ -162,6 +162,8 @@ Route::group(['middleware' => 'role:admin'], function(){
         'destroy' => 'admin.notifications.destroy'
     ]]);
 
+    Route::post('/admin/notifications/ajaxMarkAsRead', 'Admin\AdminNotificationsController@ajaxMarkAsRead')->name('admin.notifications.ajaxMarkAsRead');
+
     Route::group(['middleware' => 'permission:crud roles'], function(){
         Route::resource('/admin/roles', 'Admin\AdminRoleController', ['names'=>[
             'index' => 'admin.roles.index',
