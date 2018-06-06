@@ -211,6 +211,12 @@
     margin-right: 5px;
 }
 
+.star-review .glyphicon:hover {
+    -ms-transform: rotate(-15deg) scale(1.3);
+    -webkit-transform: rotate(-15deg) scale(1.3);
+    transform: rotate(-15deg) scale(1.3);
+}
+
 /* Account Page */
 
 .account-change-password-btn {

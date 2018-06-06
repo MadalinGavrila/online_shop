@@ -39,7 +39,7 @@
                 @else
                     @role('admin')
                         <li>
-                            <a href="{{route('admin')}}">Admin Panel</a>
+                            <a href="{{route('admin')}}"><span class="glyphicon glyphicon-dashboard"></span> Admin Panel</a>
                         </li>
                     @endrole
                     <li class="dropdown">
