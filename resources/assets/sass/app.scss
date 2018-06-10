@@ -232,3 +232,31 @@
 .notification-button {
     margin-top: 10px;
 }
+
+/* For Mobile Phones */
+
+@media only screen and (max-width: 600px) {
+
+    /* Home Page */
+    #home-products-carousel {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    /* Products List */
+    .products .product-info .product-price {
+        display: none;
+    }
+
+    .products .ratings {
+        display: none;
+    }
+
+    .products .product-buttons {
+        display: none;
+    }
+
+}
