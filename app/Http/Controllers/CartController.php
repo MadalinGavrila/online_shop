@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cart\Cart;
+use App\Exceptions\QuantityExceededException;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,11 @@ class CartController extends Controller
 
         $cart = new Cart();
 
-        $cart->add($product, 1);
+        try {
+            $cart->add($product, 1);
+        } catch(QuantityExceededException $e) {
+            session()->flash('quantity_exceeded_' . $product->id, $e->getMessage());
+        }
 
         return redirect()->route('cart');
     }
@@ -38,7 +43,11 @@ class CartController extends Controller
 
         $cart = new Cart();
 
-        $cart->update($product, $request->quantity);
+        try {
+            $cart->update($product, $request->quantity);
+        } catch(QuantityExceededException $e) {
+            session()->flash('quantity_exceeded_' . $product->id, $e->getMessage());
+        }
 
         return redirect()->route('cart');
     }

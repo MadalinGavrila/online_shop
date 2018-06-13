@@ -2,6 +2,7 @@
 
 namespace App\Cart;
 
+use App\Exceptions\QuantityExceededException;
 use App\Product;
 
 class Cart
@@ -30,7 +31,7 @@ class Cart
     public function update(Product $product, $quantity)
     {
         if(!$product->hasStock($quantity)){
-            // throw exception
+            throw new QuantityExceededException;
         }
 
         if($quantity == 0){

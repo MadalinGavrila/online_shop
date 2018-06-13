@@ -42,6 +42,8 @@
                                         </select>
                                         <input type="submit" value="Update" class="btn btn-default btn-sm" />
                                     </form>
+
+                                    <span class="errors">{{session()->has('quantity_exceeded_' . $product->id) ? session('quantity_exceeded_' . $product->id) : ''}}</span>
                                 </td>
                                 <td>{{number_format($product->price, 2)}} &euro;</td>
                                 <td>
